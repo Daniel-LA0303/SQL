@@ -55,27 +55,82 @@ select * from inventory where film_id < 10;
 
 -- ************* EJERCICIOS ****************
 
--- select
--- Selecciona el primer nombre y el apellido de la tabla actor
+-- SELECT
+-- 1. Selecciona el primer nombre y el apellido de la tabla actor
 select first_name, last_name from actor;
 
--- Selecciona el nombre de las pelicuals y su descripcion de la tabla film
+-- 2. Selecciona el nombre de las pelicuals y su descripcion de la tabla film
 select title, description from film; 
 
--- Selecciona el nombre completo de los clientes concatenando first_name y last_name de la tabla customer
+-- 3. Selecciona el nombre completo de los clientes concatenando first_name y last_name de la tabla customer
 select concat(first_name, " ", last_name) as name from customer;
 
--- order by
--- Selecciona todos los actores y ordenalos por last_name de forma asc
+
+-- ORDER BY
+-- 1. Selecciona todos los actores y ordenalos por last_name de forma asc
 select * from actor order by last_name asc;
 
--- Selecciona todos los actores y ordenalos por first_name de forma des
+-- 2. Selecciona todos los actores y ordenalos por first_name de forma des
 select * from actor order by first_name desc;
 
--- Distinct
--- Selecciona los distintos nombre de ciudades de la tabla city
+-- 3. Selecciona el nombre de las peliculas y ordenalas por title en orden asc
+select * from film order by title asc;
+
+-- DISTINCT
+-- 1. Selecciona los distintos nombre de ciudades de la tabla city
 select distinct (city) from city;
 
--- Selecciona las diferentes categorias de peliculas de la tabla category
+-- 2. Selecciona las diferentes categorias de peliculas de la tabla category
 select distinct (name) from category;
+
+-- 3. Selecciona los diferentes nombres de los actores
+select distinct (first_name) as name from actor;
+
+
+-- WHERE
+-- 1. Selecciona todos los actores cuyo apellido sea 'Neeson'
+select * from actor where last_name = 'Neeson';
+
+-- 2. Selecciona todas las peliculas que fueron lanzadas en 2006 y ordenalas por title asc
+select * from film where release_year = 2006;
+
+-- 3. Slecciona todos los clientes cuyo nombre empiece con 'A'
+select * from customer where first_name like 'A%';
+
+
+-- WHERE Y ORDER BY
+-- 1. Selecciona todos los actores cuyo apellido sea 'Neeson' y ordenalos por first_name
+select * from actor where last_name = 'Neeson' order by first_name asc;
+
+-- 2. Selecciona todas las peliculas lanzadas en 2006 y ordenalas por title
+select * from film where release_year = 2006 order by title asc;
+
+-- 3. Selecciona todas los clientes cuyo nombre empiece con 'A' y ordenalos por last_name
+select * from customer where first_name like 'A%' order by last_name desc;
+
+
+-- WHERE, ORDER BY, DISTINCT Y SELECT
+-- 1. Selecciona los diferentes nombres de actores cuyo apellido sea 'Nesson' y ordenalos por fisrt name
+select * from actor where last_name = 'Neeson' order by first_name desc;
+
+-- 2. Selecciona las distintas lenguas de las peliculas lanzadas en el año 2006 y ordenalas por title
+select language_id  from film where release_year = 2006 order by title asc;
+select l.name, f.title  from film f inner join language l on (f.language_id = l.language_id) order by f.title desc;
+
+-- 3. Selecciona las diferentes categorias de peliculas con una duracion mayor a 120 minutos y ordenalas por name
+
+select * from film;
+select * from category;
+select * from film_category;
+
+
+select c.name, f.title  
+from film f 
+join film_category fc on (f.film_id = fc.film_id) 
+join category c on (fc.category_id = c.category_id) 
+where f.length > 120 
+order by f.title asc; 
+
+
+
 

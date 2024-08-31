@@ -30,6 +30,7 @@ select address, address2,
 	end as Comentario
 	from address;
 
+-- FECHAS
 -- 7.7 now
 SELECT 
     actor_id,
@@ -63,6 +64,24 @@ SELECT
     DATE_FORMAT(NOW(), '%d-%m-%Y') AS formatted_date
 FROM actor;
 
+
+-- Ejercicios
+
+-- Concatena el nombre y el apellido de los cleintes en una sola columna llamada full_name
+select concat(c.first_name, " ", c.last_name) as full_name  from customer c ;
+
+-- Concatena el el titulo, descripcion y año de lanzamiento de las peliculas en una columna llamada film_details, usando un guion como separador
+select concat(f.title, " - ", f.description, " - ", f.release_year) as film_details from film f;
+
+-- Cuenta el numero de caracteres en los nombres de las categorias y muestra la longitud en una columna llamada logitudcadena
+select *, char_length(c.name) as longitud_cadena from category c;
+
+-- Upper y lower case
+-- Converte todos los apellidos de los clientes a minusculas y muestralos en una columna llamada last_name_lower
+select *, lower(c.last_name) as last_name_lower from customer c;
+
+-- Convierte todos los nombres de los actores a upper y muestralos en una columna llamada first_name_upper
+select *, upper(a.first_name) as fisrt_name_upper  from actor a ;
 
 
 
