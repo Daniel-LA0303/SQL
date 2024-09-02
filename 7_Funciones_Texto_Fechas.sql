@@ -83,5 +83,7 @@ select *, lower(c.last_name) as last_name_lower from customer c;
 -- Convierte todos los nombres de los actores a upper y muestralos en una columna llamada first_name_upper
 select *, upper(a.first_name) as fisrt_name_upper  from actor a ;
 
+-- new comments
+
 
 
